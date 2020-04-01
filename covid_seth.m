@@ -338,9 +338,7 @@ saveas(gcf,'positive_rate.png','png')
 cd('State_Plots')
 
 for state_num = 1:52
-	
-	
-	
+		
 	plot_state_1 = state_abrv{state_num};
 		
 	figure
@@ -373,7 +371,38 @@ for state_num = 1:52
 	saveas(gcf,[plot_state_1,'.png'],'png')
 
 end
+
+cd ..
 	
+close all
+
+
+
+cd('State_Doubling')
+
+for state_num = 1:52
+		
+	plot_state_1 = state_abrv{state_num};
+		
+	figure
+	hold on
+	
+	plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-3).positiveDays], [state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-3).currentDoubleRate_three],'-o','Color',color1)
+
+	%set(gca,'yscale','log')
+	%set(gca,'xscale','log')
+	axis([0,45,0,15])
+	xlabel('Days Since First Positive') 
+	ylabel({'Daily Doubling Time';'Three Day Period';'(days)'}) 
+	legend(state_names{state_num})
+	hYLabel = get(gca,'YLabel');
+	set(hYLabel,'rotation',0,'VerticalAlignment','middle','HorizontalAlignment','right')
+	hYLabel.Position(1) = hYLabel.Position(1)-0;
+	axis square
+	box on
+	saveas(gcf,[plot_state_1,'_double_three.png'],'png')
+
+end
 
 cd ..
 	
@@ -381,4 +410,42 @@ close all
 	
 	
 	
+
+cd('Positive_Rate')
+
+for state_num = 1:52
+		
+	plot_state_1 = state_abrv{state_num};
+	
+	figure
+	hold on
+	
+	prune = 15;
+	
+	plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-prune).positiveDays], 100.*([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-prune).positiveIncrease] ./ [state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-prune).totalTestResultsIncrease]),'-o','Color',color1)
+	
+	%set(gca,'yscale','log')
+	%set(gca,'xscale','log')
+	axis([0,45,0,100])
+	legend(state_names{state_num})
+	xlabel('Days Since First Positive')
+	ylabel({'Current Day';'Positive Test';'(%)'})
+	
+	hYLabel = get(gca,'YLabel');
+	set(hYLabel,'rotation',0,'VerticalAlignment','middle','HorizontalAlignment','right')
+	hYLabel.Position(1) = hYLabel.Position(1)-0;
+	
+	axis square
+	box on
+	saveas(gcf,[plot_state_1,'_positive_rate.png'],'png')
+	
+end
+
+cd ..
+
+close all
+
+
+
+
 	

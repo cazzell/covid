@@ -335,8 +335,11 @@ box on
 saveas(gcf,'positive_rate.png','png')
 
 
+cd('State_Plots')
+
 for state_num = 1:52
-	plot_state_1 = state_abrv{1};
+		
+	plot_state_1 = state_abrv{state_num};
 		
 	figure
 	hold on
@@ -365,11 +368,47 @@ for state_num = 1:52
 	hYLabel = get(gca,'YLabel');
 	set(hYLabel,'rotation',0,'VerticalAlignment','middle','HorizontalAlignment','right')
 	hYLabel.Position(1) = hYLabel.Position(1)-0;
-	saveas(gcf,[state_str]'.png','png')
+	saveas(gcf,[plot_state_1,'.png'],'png')
 
 end
+
+cd ..
 	
+close all
+
+
+
+
+
+for state_num = 1:52
+		
+	plot_state_1 = state_abrv{state_num};
+		
+	figure
+	hold on
 	
+	plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-3).positiveDays], [state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-3).currentDoubleRate_three],'-o','Color',color1)
+	
+
+	
+	set(gca,'yscale','log')
+	%set(gca,'xscale','log')
+	axis([0,45,10^-4,100])
+	legend(state_names{state_num}, 'positive tests', 'total tests')
+	xlabel('Days Since First Positive')
+	ylabel({'Total Positive';'and Total Tests';'(% of Population)'})
+	axis square
+	box on
+	hYLabel = get(gca,'YLabel');
+	set(hYLabel,'rotation',0,'VerticalAlignment','middle','HorizontalAlignment','right')
+	hYLabel.Position(1) = hYLabel.Position(1)-0;
+	saveas(gcf,[plot_state_1,'.png'],'png')
+
+end
+
+cd ..
+	
+close all
 	
 	
 	
