@@ -21,9 +21,12 @@ state_abrv_full_download = {'AK';'AL';'AR';'AS';'AZ';'CA';'CO';'CT';'DC';'DE';'F
 
 %web_import_states = webread('https://covidtracking.com/api/states/daily');
 web_import_states_raw = webread('https://covidtracking.com/api/states/daily');
+
 %web_import_states = webread('https://covidtracking.com/api/v1/states/daily.json');
 
+
 % On 4/2 the API seemingly changed. So need to fill in missing gaps
+
 % Look at all of the field names
 max_fields = 1;
 max_field_index = 1;
@@ -31,7 +34,7 @@ max_field_index = 1;
 for structNum = 1:length(web_import_states_raw)
 
 	field_names{structNum,1} = fieldnames(web_import_states_raw{structNum});
-	current_field_num = length(field_names{structNum,1});
+	current_field_num = length(field_names{1,1});
 	
 	if current_field_num > max_fields
 		max_fields = current_field_num;
@@ -39,33 +42,83 @@ for structNum = 1:length(web_import_states_raw)
 	end
 end
 
-master_field_names = field_names{max_field_index,1};
+master_field_names = field_names(max_field_index,1};
 
 for structNum = 1:length(web_import_states_raw)
 
-	%field_names{structNum,1} = fieldnames(web_import_states_raw{structNum});
-	current_field_num = length(field_names{structNum,1});
+	field_names{structNum,1} = fieldnames(web_import_states_raw{structNum});
+	current_field_num = length(field_names{1,1});
 	
 	if current_field_num < max_fields
+		
 		for field_index = 1:max_fields
 			current_field = master_field_names{field_index};
-			if ~ismember(current_field, field_names{structNum,1})
-				web_import_states_raw{structNum,1}.(current_field) = [];
-			end
-		end
+			if ~ismember(current_field, res1fields)
+		
 	end
 end
 
+
+
+res1fields = fieldnames(res1);
+   res2fields = fieldnames(res2);
+   %add fields that are in res2 but not in res1
+   res1copy = res1;
+   for K = 1 : length(res2fields)
+      thisfield = res2fields{K};
+      if ~ismember(thisfield, res1fields)
+        res1copy(1).(thisfield) = [];   %create the field, make it empty
+      end
+    end
+
+
 for structNum = 1:length(web_import_states_raw)
+
+	field_names{structNum,1} = fieldnames(web_import_states_raw{structNum});
+	current_field_num = length(field_names{1,1});
 	
-	web_import_states(structNum) = web_import_states_raw{structNum}
-	
+	if current_field_num > max_fields
+		max_fields = current_field_num;
+		max_field_index = structNum;
+	end
 end
+
+
+% for structNum = 1:length(web_import_states_raw)
+% 
+% 	structNum
+% 	current_cell = struct2cell(web_import_states_raw{structNum});
+% 	new_struct(structNum) = cell2struct(current_cell, field_names{structNum}, 1);
+% 	
+% end
+
+% for structNum = 1:length(web_import_states_raw)
+% 
+% 	new_struct(structNum) = web_import_states_raw{structNum}
+% 	
+% end
+
+
+% names = [fieldnames(struct1); fieldnames(struct2)];
+%struct3 = cell2struct([struct2cell(struct1); struct2cell(struct2)], names, 1);
+
+
+%catstruct(A,B)
+
+% for structNum = 1:length(web_import_states_raw)
+% 	structNum
+% 	cat_test(structNum) = catstruct(web_import_states_raw{structNum})
+% 	
+% end
+
 
 state_abrv = {'AK';'AL';'AR';'AZ';'CA';'CO';'CT';'DC';'DE';'FL';'GA';'HI';'IA';'ID';'IL';'IN';'KS';'KY';'LA';'MA';'MD';'ME';'MI';'MN';'MO';'MS';'MT';'NC';'ND';'NE';'NH';'NJ';'NM';'NV';'NY';'OH';'OK';'OR';'PA';'PR';'RI';'SC';'SD';'TN';'TX';'UT';'VA';'VT';'WA';'WI';'WV';'WY'};
 state_names = {'Alaska';'Alabama';'Arkansas';'Arizona';'California';'Colorado';'Connecticut';'District of Columbia';'Delaware';'Florida';'Georgia';'Hawaii';'Iowa';'Idaho';'Illinois';'Indiana';'Kansas';'Kentucky';'Louisiana';'Massachusetts';'Maryland';'Maine';'Michigan';'Minnesota';'Missouri';'Mississippi';'Montana';'North Carolina';'North Dakota';'Nebraska';'New Hampshire';'New Jersey';'New Mexico';'Nevada';'New York';'Ohio';'Oklahoma';'Oregon';'Pennsylvania';'Puerto Rico';'Rhode Island';'South Carolina';'South Dakota';'Tennessee';'Texas';'Utah';'Virginia';'Vermont';'Washington';'Wisconsin';'West Virginia';'Wyoming'};
 
 list_of_states = {web_import_states.state};
+
+
+
 
 for current_state_num = 1:length(state_abrv)
 	current_state_str = state_abrv{current_state_num};
@@ -108,12 +161,16 @@ for current_state_num = 1:length(state_abrv)
 	end
 	
 	
+	
 	% Population Data
 	state_str = state_names{current_state_num};
 	popIndex = find(strcmp({popData.name}, state_str));
 	population = popData(popIndex).population;
 	
 	state_data.(current_state_str)(1).population = str2num(population);
+	
+	
+	
 	
 end
 
@@ -249,7 +306,7 @@ plot([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).pos
 
 set(gca,'yscale','log')
 %set(gca,'xscale','log')
-axis([0,45,10^-4,100])
+axis([0,30,10^-4,100])
 legend(plot_state_1, plot_state_2, plot_state_3, plot_state_4, 'positive tests', 'total tests')
 xlabel('Days Since First Positive') 
 ylabel({'Total Positive';'and Total Tests';'(% of Population)'}) 
@@ -306,7 +363,7 @@ plot([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays-3).p
 
 %set(gca,'yscale','log')
 %set(gca,'xscale','log')
-axis([0,45,0,15])
+axis([0,30,0,15])
 legend(plot_state_1, plot_state_2, plot_state_3, plot_state_4)
 xlabel('Days Since First Positive') 
 ylabel('Daily Doubling Time over Three Day Period (days)') 
