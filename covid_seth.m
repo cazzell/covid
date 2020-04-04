@@ -23,6 +23,8 @@ state_abrv_full_download = {'AK';'AL';'AR';'AS';'AZ';'CA';'CO';'CT';'DC';'DE';'F
 web_import_states_raw = webread('https://covidtracking.com/api/states/daily');
 %web_import_states = webread('https://covidtracking.com/api/v1/states/daily.json');
 
+web_import_us_raw = webread('https://covidtracking.com/api/us/daily');
+
 % On 4/2 the API seemingly changed. So need to fill in missing gaps
 % Look at all of the field names
 max_fields = 1;
