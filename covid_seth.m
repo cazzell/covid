@@ -25,6 +25,12 @@ web_import_states_raw = webread('https://covidtracking.com/api/states/daily');
 
 web_import_us_raw = webread('https://covidtracking.com/api/us/daily');
 
+% From https://github.com/pomber/covid19 which is from John Hopkins
+web_import_raw_nations = webread('https://pomber.github.io/covid19/timeseries.json');
+
+% From ecdc
+web_import_raw_nation_ecdc = webread('https://opendata.ecdc.europa.eu/covid19/casedistribution/json/');
+
 % On 4/2 the API seemingly changed. So need to fill in missing gaps
 % Look at all of the field names
 max_fields = 1;
