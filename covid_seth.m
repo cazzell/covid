@@ -381,122 +381,122 @@ saveas(gcf,'positive_rate.png','png')
 
 
 
-% if ~exist('State_Plots', 'dir')
-%        mkdir('State_Plots')
-% end
-% cd('State_Plots')
-% 
-% 
-% for state_num = 1:52
-% 		
-% 	plot_state_1 = state_abrv{state_num};
-% 		
-% 	figure
-% 	hold on
-% 	
-% 	fill([[state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays], flip([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays])],    100.*([[state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positive], flip([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).totalTestResults])])./ (state_data.(plot_state_1)(1).population), color1,'FaceAlpha', 0.25,'EdgeColor', color1)
-% 		
-% 	plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positive])./ (state_data.(plot_state_1)(1).population),'-o','Color',color1,'MarkerFaceColor',color1)
-% 	plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).totalTestResults])./ (state_data.(plot_state_1)(1).population),'-o','Color',color1)
-% 	
-% 	% plot(linspace(1,30,100),2.^(linspace(1,30,100)/1))
-% 	% plot(linspace(1,30,100),2.^(linspace(1,30,100)/2))
-% 	% plot(linspace(1,30,100),2.^(linspace(1,30,100)/3))
-% 	% plot(linspace(1,30,100),2.^(linspace(1,30,100)/4))
-% 	% plot(linspace(1,30,100),2.^(linspace(1,30,100)/5))
-% 	% plot(linspace(1,30,100),2.^(linspace(1,30,100)/6))
-% 	% plot(linspace(1,30,100),2.^(linspace(1,30,100)/7))
-% 	
-% 	set(gca,'yscale','log')
-% 	%set(gca,'xscale','log')
-% 	axis([0,45,10^-4,100])
-% 	legend(state_names{state_num}, 'positive tests', 'total tests')
-% 	xlabel('Days Since First Positive')
-% 	ylabel({'Total Positive';'and Total Tests';'(% of Population)'})
-% 	axis square
-% 	box on
-% 	hYLabel = get(gca,'YLabel');
-% 	set(hYLabel,'rotation',0,'VerticalAlignment','middle','HorizontalAlignment','right')
-% 	hYLabel.Position(1) = hYLabel.Position(1)-0;
-% 	saveas(gcf,[plot_state_1,'.png'],'png')
-% 
-% end
-% 
-% cd ..
-% 	
-% close all
-% 
-% 
-% 
-% if ~exist('State_Doubling', 'dir')
-%        mkdir('State_Doubling')
-% end
-% cd('State_Doubling')
-% 
-% for state_num = 1:52
-% 		
-% 	plot_state_1 = state_abrv{state_num};
-% 		
-% 	figure
-% 	hold on
-% 	
-% 	plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-3).positiveDays], [state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-3).currentDoubleRate_three],'-o','Color',color1)
-% 
-% 	%set(gca,'yscale','log')
-% 	%set(gca,'xscale','log')
-% 	axis([0,45,0,15])
-% 	xlabel('Days Since First Positive') 
-% 	ylabel({'Daily Doubling Time';'Three Day Period';'(days)'}) 
-% 	legend(state_names{state_num})
-% 	hYLabel = get(gca,'YLabel');
-% 	set(hYLabel,'rotation',0,'VerticalAlignment','middle','HorizontalAlignment','right')
-% 	hYLabel.Position(1) = hYLabel.Position(1)-0;
-% 	axis square
-% 	box on
-% 	saveas(gcf,[plot_state_1,'_double_three.png'],'png')
-% 
-% end
-% 
-% cd ..
-% 	
-% close all
-% 	
-% 	
-% if ~exist('Positive_Rate', 'dir')
-%        mkdir('Positive_Rate')
-% end
-% cd('Positive_Rate')
-% 
-% for state_num = 1:52
-% 		
-% 	plot_state_1 = state_abrv{state_num};
-% 	
-% 	figure
-% 	hold on
-% 	
-% 	prune = 15;
-% 	
-% 	plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-prune).positiveDays], 100.*([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-prune).positiveIncrease] ./ [state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-prune).totalTestResultsIncrease]),'-o','Color',color1)
-% 	
-% 	%set(gca,'yscale','log')
-% 	%set(gca,'xscale','log')
-% 	axis([0,45,0,100])
-% 	legend(state_names{state_num})
-% 	xlabel('Days Since First Positive')
-% 	ylabel({'Current Day';'Positive Test';'(%)'})
-% 	
-% 	hYLabel = get(gca,'YLabel');
-% 	set(hYLabel,'rotation',0,'VerticalAlignment','middle','HorizontalAlignment','right')
-% 	hYLabel.Position(1) = hYLabel.Position(1)-0;
-% 	
-% 	axis square
-% 	box on
-% 	saveas(gcf,[plot_state_1,'_positive_rate.png'],'png')
-% 	
-% end
-% 
-% cd ..
-% 
-% close all
+if ~exist('State_Plots', 'dir')
+       mkdir('State_Plots')
+end
+cd('State_Plots')
+
+
+for state_num = 1:52
+		
+	plot_state_1 = state_abrv{state_num};
+		
+	figure
+	hold on
+	
+	fill([[state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays], flip([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays])],    100.*([[state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positive], flip([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).totalTestResults])])./ (state_data.(plot_state_1)(1).population), color1,'FaceAlpha', 0.25,'EdgeColor', color1)
+		
+	plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positive])./ (state_data.(plot_state_1)(1).population),'-o','Color',color1,'MarkerFaceColor',color1)
+	plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).totalTestResults])./ (state_data.(plot_state_1)(1).population),'-o','Color',color1)
+	
+	% plot(linspace(1,30,100),2.^(linspace(1,30,100)/1))
+	% plot(linspace(1,30,100),2.^(linspace(1,30,100)/2))
+	% plot(linspace(1,30,100),2.^(linspace(1,30,100)/3))
+	% plot(linspace(1,30,100),2.^(linspace(1,30,100)/4))
+	% plot(linspace(1,30,100),2.^(linspace(1,30,100)/5))
+	% plot(linspace(1,30,100),2.^(linspace(1,30,100)/6))
+	% plot(linspace(1,30,100),2.^(linspace(1,30,100)/7))
+	
+	set(gca,'yscale','log')
+	%set(gca,'xscale','log')
+	axis([0,45,10^-4,100])
+	legend(state_names{state_num}, 'positive tests', 'total tests')
+	xlabel('Days Since First Positive')
+	ylabel({'Total Positive';'and Total Tests';'(% of Population)'})
+	axis square
+	box on
+	hYLabel = get(gca,'YLabel');
+	set(hYLabel,'rotation',0,'VerticalAlignment','middle','HorizontalAlignment','right')
+	hYLabel.Position(1) = hYLabel.Position(1)-0;
+	saveas(gcf,[plot_state_1,'.png'],'png')
+
+end
+
+cd ..
+	
+close all
+
+
+
+if ~exist('State_Doubling', 'dir')
+       mkdir('State_Doubling')
+end
+cd('State_Doubling')
+
+for state_num = 1:52
+		
+	plot_state_1 = state_abrv{state_num};
+		
+	figure
+	hold on
+	
+	plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-3).positiveDays], [state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-3).currentDoubleRate_three],'-o','Color',color1)
+
+	%set(gca,'yscale','log')
+	%set(gca,'xscale','log')
+	axis([0,45,0,15])
+	xlabel('Days Since First Positive') 
+	ylabel({'Daily Doubling Time';'Three Day Period';'(days)'}) 
+	legend(state_names{state_num})
+	hYLabel = get(gca,'YLabel');
+	set(hYLabel,'rotation',0,'VerticalAlignment','middle','HorizontalAlignment','right')
+	hYLabel.Position(1) = hYLabel.Position(1)-0;
+	axis square
+	box on
+	saveas(gcf,[plot_state_1,'_double_three.png'],'png')
+
+end
+
+cd ..
+	
+close all
+	
+	
+if ~exist('Positive_Rate', 'dir')
+       mkdir('Positive_Rate')
+end
+cd('Positive_Rate')
+
+for state_num = 1:52
+		
+	plot_state_1 = state_abrv{state_num};
+	
+	figure
+	hold on
+	
+	prune = 15;
+	
+	plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-prune).positiveDays], 100.*([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-prune).positiveIncrease] ./ [state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-prune).totalTestResultsIncrease]),'-o','Color',color1)
+	
+	%set(gca,'yscale','log')
+	%set(gca,'xscale','log')
+	axis([0,45,0,100])
+	legend(state_names{state_num})
+	xlabel('Days Since First Positive')
+	ylabel({'Current Day';'Positive Test';'(%)'})
+	
+	hYLabel = get(gca,'YLabel');
+	set(hYLabel,'rotation',0,'VerticalAlignment','middle','HorizontalAlignment','right')
+	hYLabel.Position(1) = hYLabel.Position(1)-0;
+	
+	axis square
+	box on
+	saveas(gcf,[plot_state_1,'_positive_rate.png'],'png')
+	
+end
+
+cd ..
+
+close all
 
 	
