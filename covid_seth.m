@@ -31,6 +31,11 @@ web_import_raw_nations = webread('https://pomber.github.io/covid19/timeseries.js
 % From ecdc
 web_import_raw_nation_ecdc = webread('https://opendata.ecdc.europa.eu/covid19/casedistribution/json/');
 
+% US County
+% By location
+%web_import_CDS_location = webread('https://coronadatascraper.com/timeseries-byLocation.json');
+%web_import_CDS_time = webread('https://coronadatascraper.com/timeseries.json');
+
 % On 4/2 the API seemingly changed. So need to fill in missing gaps
 % Look at all of the field names
 max_fields = 1;
