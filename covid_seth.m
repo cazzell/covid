@@ -345,7 +345,7 @@ plot([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).pos
 
 set(gca,'yscale','log')
 %set(gca,'xscale','log')
-axis([0,30,10.^-6,100])
+axis([0,60,10.^-6,100])
 legend(plot_state_1, plot_state_2, plot_state_3, plot_state_4)
 xlabel('Days Since First Positive') 
 ylabel('Percent of Population Negative Results') 
