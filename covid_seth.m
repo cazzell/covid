@@ -223,59 +223,112 @@ end
 % box on
 % saveas(gcf,'plot.eps','epsc')
 
-
-
-% My plot
-
-plot_state_1 = 'MA';
-plot_state_2 = 'OH';
-plot_state_3 = 'NY';
-plot_state_4 = 'TN';
-
-figure
-hold on
-
-fill([[state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays], flip([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays])],    100.*([[state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positive], flip([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).totalTestResults])])./ (state_data.(plot_state_1)(1).population), color1,'FaceAlpha', 0.25,'EdgeColor', color1)
-fill([[state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).positiveDays], flip([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).positiveDays])],    100.*([[state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).positive], flip([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).totalTestResults])])./ (state_data.(plot_state_2)(1).population), color2,'FaceAlpha', 0.25,'EdgeColor', color2)
-fill([[state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).positiveDays], flip([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).positiveDays])],    100.*([[state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).positive], flip([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).totalTestResults])])./ (state_data.(plot_state_3)(1).population), color3,'FaceAlpha', 0.25,'EdgeColor', color3)
-fill([[state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).positiveDays], flip([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).positiveDays])],    100.*([[state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).positive], flip([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).totalTestResults])])./ (state_data.(plot_state_4)(1).population), color4,'FaceAlpha', 0.25,'EdgeColor', color4)
-
-plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positive])./ (state_data.(plot_state_1)(1).population),'-o','Color',color1,'MarkerFaceColor',color1)
-plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).totalTestResults])./ (state_data.(plot_state_1)(1).population),'-o','Color',color1)
-
-plot([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).positive])./ (state_data.(plot_state_2)(1).population),'-s','Color',color2,'MarkerFaceColor',color2)
-plot([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).totalTestResults])./ (state_data.(plot_state_2)(1).population),'-s','Color',color2)
-
-plot([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).positive])./ (state_data.(plot_state_3)(1).population),'-d','Color',color3,'MarkerFaceColor',color3)
-plot([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).totalTestResults])./ (state_data.(plot_state_3)(1).population),'-d','Color',color3)
-
-plot([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).positive])./ (state_data.(plot_state_4)(1).population),'-^','Color',color4,'MarkerFaceColor',color4)
-plot([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).totalTestResults])./ (state_data.(plot_state_4)(1).population),'-^','Color',color4)
-
-% plot(linspace(1,30,100),2.^(linspace(1,30,100)/1))
-% plot(linspace(1,30,100),2.^(linspace(1,30,100)/2))
-% plot(linspace(1,30,100),2.^(linspace(1,30,100)/3))
-% plot(linspace(1,30,100),2.^(linspace(1,30,100)/4))
-% plot(linspace(1,30,100),2.^(linspace(1,30,100)/5))
-% plot(linspace(1,30,100),2.^(linspace(1,30,100)/6))
-% plot(linspace(1,30,100),2.^(linspace(1,30,100)/7))
-
-set(gca,'yscale','log')
-%set(gca,'xscale','log')
-axis([0,90,10^-4,100])
-legend(plot_state_1, plot_state_2, plot_state_3, plot_state_4, 'positive tests', 'total tests')
-xlabel('Days Since First Positive') 
-ylabel({'Total Positive';'and Total Tests';'(% of Population)'}) 
-axis square
-box on
-hYLabel = get(gca,'YLabel');
-set(hYLabel,'rotation',0,'VerticalAlignment','middle','HorizontalAlignment','right')
-hYLabel.Position(1) = hYLabel.Position(1)-0;
-saveas(gcf,'plot.png','png')
-
-
-
-% % Median Doubling
+%%
+% 
+% % My plot
+% 
+% plot_state_1 = 'MA';
+% plot_state_2 = 'OH';
+% plot_state_3 = 'NY';
+% plot_state_4 = 'TN';
+% 
+% figure
+% hold on
+% 
+% fill([[state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays], flip([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays])],    100.*([[state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positive], flip([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).totalTestResults])])./ (state_data.(plot_state_1)(1).population), color1,'FaceAlpha', 0.25,'EdgeColor', color1)
+% fill([[state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).positiveDays], flip([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).positiveDays])],    100.*([[state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).positive], flip([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).totalTestResults])])./ (state_data.(plot_state_2)(1).population), color2,'FaceAlpha', 0.25,'EdgeColor', color2)
+% fill([[state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).positiveDays], flip([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).positiveDays])],    100.*([[state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).positive], flip([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).totalTestResults])])./ (state_data.(plot_state_3)(1).population), color3,'FaceAlpha', 0.25,'EdgeColor', color3)
+% fill([[state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).positiveDays], flip([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).positiveDays])],    100.*([[state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).positive], flip([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).totalTestResults])])./ (state_data.(plot_state_4)(1).population), color4,'FaceAlpha', 0.25,'EdgeColor', color4)
+% 
+% plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positive])./ (state_data.(plot_state_1)(1).population),'-o','Color',color1,'MarkerFaceColor',color1)
+% plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).totalTestResults])./ (state_data.(plot_state_1)(1).population),'-o','Color',color1)
+% 
+% plot([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).positive])./ (state_data.(plot_state_2)(1).population),'-s','Color',color2,'MarkerFaceColor',color2)
+% plot([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).totalTestResults])./ (state_data.(plot_state_2)(1).population),'-s','Color',color2)
+% 
+% plot([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).positive])./ (state_data.(plot_state_3)(1).population),'-d','Color',color3,'MarkerFaceColor',color3)
+% plot([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).totalTestResults])./ (state_data.(plot_state_3)(1).population),'-d','Color',color3)
+% 
+% plot([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).positive])./ (state_data.(plot_state_4)(1).population),'-^','Color',color4,'MarkerFaceColor',color4)
+% plot([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).totalTestResults])./ (state_data.(plot_state_4)(1).population),'-^','Color',color4)
+% 
+% % plot(linspace(1,30,100),2.^(linspace(1,30,100)/1))
+% % plot(linspace(1,30,100),2.^(linspace(1,30,100)/2))
+% % plot(linspace(1,30,100),2.^(linspace(1,30,100)/3))
+% % plot(linspace(1,30,100),2.^(linspace(1,30,100)/4))
+% % plot(linspace(1,30,100),2.^(linspace(1,30,100)/5))
+% % plot(linspace(1,30,100),2.^(linspace(1,30,100)/6))
+% % plot(linspace(1,30,100),2.^(linspace(1,30,100)/7))
+% 
+% set(gca,'yscale','log')
+% %set(gca,'xscale','log')
+% axis([0,90,10^-4,100])
+% legend(plot_state_1, plot_state_2, plot_state_3, plot_state_4, 'positive tests', 'total tests')
+% xlabel('Days Since First Positive') 
+% ylabel({'Total Positive';'and Total Tests';'(% of Population)'}) 
+% axis square
+% box on
+% hYLabel = get(gca,'YLabel');
+% set(hYLabel,'rotation',0,'VerticalAlignment','middle','HorizontalAlignment','right')
+% hYLabel.Position(1) = hYLabel.Position(1)-0;
+% saveas(gcf,'plot.png','png')
+% 
+% 
+% 
+% % % Median Doubling
+% % 
+% % plot_state_1 = 'MA';
+% % plot_state_2 = 'OH';
+% % plot_state_3 = 'NY';
+% % plot_state_4 = 'CA';
+% % 
+% % figure
+% % hold on
+% % 
+% % plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-1).positiveDays], [state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).medDoubleThree],'-o','Color',color1)
+% % plot([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays-1).positiveDays], [state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).medDoubleThree],'-o','Color',color2)
+% % plot([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays-1).positiveDays], [state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).medDoubleThree],'-o','Color',color3)
+% % plot([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays-1).positiveDays], [state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).medDoubleThree],'-o','Color',color4)
+% % 
+% % %set(gca,'yscale','log')
+% % %set(gca,'xscale','log')
+% % axis([0,30,0,15])
+% % legend(plot_state_1, plot_state_2, plot_state_3, plot_state_4)
+% % xlabel('Days Since First Positive') 
+% % ylabel('Three Day Median of Daily Doubling Time (days)') 
+% % axis square
+% % box on
+% % saveas(gcf,'double_med.png','png')
+% 
+% 
+% % Three day daily doubling
+% 
+% plot_state_1 = 'MA';
+% plot_state_2 = 'OH';
+% plot_state_3 = 'NY';
+% plot_state_4 = 'TN';
+% 
+% figure
+% hold on
+% 
+% plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-3).positiveDays], [state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-3).currentDoubleRate_three],'-o','Color',color1)
+% plot([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays-3).positiveDays], [state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays-3).currentDoubleRate_three],'-s','Color',color2)
+% plot([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays-3).positiveDays], [state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays-3).currentDoubleRate_three],'-+','Color',color3)
+% plot([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays-3).positiveDays], [state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays-3).currentDoubleRate_three],'-^','Color',color4)
+% 
+% 
+% %set(gca,'yscale','log')
+% %set(gca,'xscale','log')
+% axis([0,90,0,15])
+% legend(plot_state_1, plot_state_2, plot_state_3, plot_state_4)
+% xlabel('Days Since First Positive') 
+% ylabel('Daily Doubling Time over Three Day Period (days)') 
+% axis square
+% box on
+% saveas(gcf,'double_three.png','png')
+% 
+% 
+% % Negative Tests
 % 
 % plot_state_1 = 'MA';
 % plot_state_2 = 'OH';
@@ -285,106 +338,53 @@ saveas(gcf,'plot.png','png')
 % figure
 % hold on
 % 
-% plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-1).positiveDays], [state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).medDoubleThree],'-o','Color',color1)
-% plot([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays-1).positiveDays], [state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).medDoubleThree],'-o','Color',color2)
-% plot([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays-1).positiveDays], [state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).medDoubleThree],'-o','Color',color3)
-% plot([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays-1).positiveDays], [state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).medDoubleThree],'-o','Color',color4)
+% plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).totalTestResults] - [state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positive])./ (state_data.(plot_state_1)(1).population),'-o','Color',color1)
+% plot([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).totalTestResults] - [state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).positive])./ (state_data.(plot_state_2)(1).population),'-s','Color',color2)
+% plot([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).totalTestResults] - [state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).positive])./ (state_data.(plot_state_3)(1).population),'-+','Color',color3)
+% plot([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).totalTestResults] - [state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).positive])./ (state_data.(plot_state_4)(1).population),'-^','Color',color4)
+% 
+% set(gca,'yscale','log')
+% %set(gca,'xscale','log')
+% axis([0,90,10.^-6,100])
+% legend(plot_state_1, plot_state_2, plot_state_3, plot_state_4)
+% xlabel('Days Since First Positive') 
+% ylabel('Percent of Population Negative Results') 
+% axis square
+% box on
+% saveas(gcf,'negative.png','png')
+% 
+% 
+% 
+% % Negative Rate
+% 
+% plot_state_1 = 'MA';
+% plot_state_2 = 'OH';
+% plot_state_3 = 'NY';
+% plot_state_4 = 'TN';
+% plot_state_5 = 'CA';
+% 
+% figure
+% hold on
+% 
+% prune = 15;
+% 
+% plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-prune).positiveDays], 100.*([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-prune).positiveIncrease] ./ [state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-prune).totalTestResultsIncrease]),'-o','Color',color1)
+% plot([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays-prune).positiveDays], 100.*([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays-prune).positiveIncrease] ./ [state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays-prune).totalTestResultsIncrease]),'-s','Color',color2)
+% plot([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays-prune).positiveDays], 100.*([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays-prune).positiveIncrease] ./ [state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays-prune).totalTestResultsIncrease]),'-+','Color',color3)
+% plot([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays-prune).positiveDays], 100.*([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays-prune).positiveIncrease] ./ [state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays-prune).totalTestResultsIncrease]),'-^','Color',color4)
+% plot([state_data.(plot_state_5)(1:state_data.(plot_state_5)(1).positiveDays-prune).positiveDays], 100.*([state_data.(plot_state_5)(1:state_data.(plot_state_5)(1).positiveDays-prune).positiveIncrease] ./ [state_data.(plot_state_5)(1:state_data.(plot_state_5)(1).positiveDays-prune).totalTestResultsIncrease]),'-*','Color',color5)
 % 
 % %set(gca,'yscale','log')
 % %set(gca,'xscale','log')
-% axis([0,30,0,15])
-% legend(plot_state_1, plot_state_2, plot_state_3, plot_state_4)
+% %axis([0,30,10.^-6,100])
+% legend(plot_state_1, plot_state_2, plot_state_3, plot_state_4, plot_state_5)
 % xlabel('Days Since First Positive') 
-% ylabel('Three Day Median of Daily Doubling Time (days)') 
+% ylabel('Current Day Positive Test (%)') 
 % axis square
 % box on
-% saveas(gcf,'double_med.png','png')
+% saveas(gcf,'positive_rate.png','png')
 
-
-% Three day daily doubling
-
-plot_state_1 = 'MA';
-plot_state_2 = 'OH';
-plot_state_3 = 'NY';
-plot_state_4 = 'TN';
-
-figure
-hold on
-
-plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-3).positiveDays], [state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-3).currentDoubleRate_three],'-o','Color',color1)
-plot([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays-3).positiveDays], [state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays-3).currentDoubleRate_three],'-s','Color',color2)
-plot([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays-3).positiveDays], [state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays-3).currentDoubleRate_three],'-+','Color',color3)
-plot([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays-3).positiveDays], [state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays-3).currentDoubleRate_three],'-^','Color',color4)
-
-
-%set(gca,'yscale','log')
-%set(gca,'xscale','log')
-axis([0,90,0,15])
-legend(plot_state_1, plot_state_2, plot_state_3, plot_state_4)
-xlabel('Days Since First Positive') 
-ylabel('Daily Doubling Time over Three Day Period (days)') 
-axis square
-box on
-saveas(gcf,'double_three.png','png')
-
-
-% Negative Tests
-
-plot_state_1 = 'MA';
-plot_state_2 = 'OH';
-plot_state_3 = 'NY';
-plot_state_4 = 'CA';
-
-figure
-hold on
-
-plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).totalTestResults] - [state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays).positive])./ (state_data.(plot_state_1)(1).population),'-o','Color',color1)
-plot([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).totalTestResults] - [state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays).positive])./ (state_data.(plot_state_2)(1).population),'-s','Color',color2)
-plot([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).totalTestResults] - [state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays).positive])./ (state_data.(plot_state_3)(1).population),'-+','Color',color3)
-plot([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).positiveDays], 100.*([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).totalTestResults] - [state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays).positive])./ (state_data.(plot_state_4)(1).population),'-^','Color',color4)
-
-set(gca,'yscale','log')
-%set(gca,'xscale','log')
-axis([0,90,10.^-6,100])
-legend(plot_state_1, plot_state_2, plot_state_3, plot_state_4)
-xlabel('Days Since First Positive') 
-ylabel('Percent of Population Negative Results') 
-axis square
-box on
-saveas(gcf,'negative.png','png')
-
-
-
-% Negative Rate
-
-plot_state_1 = 'MA';
-plot_state_2 = 'OH';
-plot_state_3 = 'NY';
-plot_state_4 = 'TN';
-plot_state_5 = 'CA';
-
-figure
-hold on
-
-prune = 15;
-
-plot([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-prune).positiveDays], 100.*([state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-prune).positiveIncrease] ./ [state_data.(plot_state_1)(1:state_data.(plot_state_1)(1).positiveDays-prune).totalTestResultsIncrease]),'-o','Color',color1)
-plot([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays-prune).positiveDays], 100.*([state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays-prune).positiveIncrease] ./ [state_data.(plot_state_2)(1:state_data.(plot_state_2)(1).positiveDays-prune).totalTestResultsIncrease]),'-s','Color',color2)
-plot([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays-prune).positiveDays], 100.*([state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays-prune).positiveIncrease] ./ [state_data.(plot_state_3)(1:state_data.(plot_state_3)(1).positiveDays-prune).totalTestResultsIncrease]),'-+','Color',color3)
-plot([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays-prune).positiveDays], 100.*([state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays-prune).positiveIncrease] ./ [state_data.(plot_state_4)(1:state_data.(plot_state_4)(1).positiveDays-prune).totalTestResultsIncrease]),'-^','Color',color4)
-plot([state_data.(plot_state_5)(1:state_data.(plot_state_5)(1).positiveDays-prune).positiveDays], 100.*([state_data.(plot_state_5)(1:state_data.(plot_state_5)(1).positiveDays-prune).positiveIncrease] ./ [state_data.(plot_state_5)(1:state_data.(plot_state_5)(1).positiveDays-prune).totalTestResultsIncrease]),'-*','Color',color5)
-
-%set(gca,'yscale','log')
-%set(gca,'xscale','log')
-%axis([0,30,10.^-6,100])
-legend(plot_state_1, plot_state_2, plot_state_3, plot_state_4, plot_state_5)
-xlabel('Days Since First Positive') 
-ylabel('Current Day Positive Test (%)') 
-axis square
-box on
-saveas(gcf,'positive_rate.png','png')
-
-
+%%
 
 if ~exist('State_Plots', 'dir')
        mkdir('State_Plots')
@@ -449,7 +449,7 @@ for state_num = 1:52
 
 	%set(gca,'yscale','log')
 	%set(gca,'xscale','log')
-	axis([0,90,0,25])
+	axis([0,90,0,50])
 	xlabel('Days Since First Positive') 
 	ylabel({'Daily Doubling Time';'Three Day Period';'(days)'}) 
 	legend(state_names{state_num})
