@@ -414,7 +414,7 @@ for state_num = 1:52
 	
 	set(gca,'yscale','log')
 	%set(gca,'xscale','log')
-	axis([0,90,10^-4,100])
+	axis([0,120,10^-4,100])
 	legend(state_names{state_num}, 'positive tests', 'total tests')
 	xlabel('Days Since First Positive')
 	ylabel({'Total Positive';'and Total Tests';'(% of Population)'})
@@ -449,7 +449,7 @@ for state_num = 1:52
 
 	%set(gca,'yscale','log')
 	%set(gca,'xscale','log')
-	axis([0,90,0,50])
+	axis([0,120,0,100])
 	xlabel('Days Since First Positive') 
 	ylabel({'Daily Doubling Time';'Three Day Period';'(days)'}) 
 	legend(state_names{state_num})
@@ -485,7 +485,7 @@ for state_num = 1:52
 	
 	%set(gca,'yscale','log')
 	%set(gca,'xscale','log')
-	axis([0,90,0,100])
+	axis([0,120,0,100])
 	legend(state_names{state_num})
 	xlabel('Days Since First Positive')
 	ylabel({'Current Day';'Positive Test';'(%)'})
